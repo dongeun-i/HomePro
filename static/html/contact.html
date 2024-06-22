@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내놓기 / 구하기</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/contact.css">
+</head>
+<body>
+    <main>
+        <section id="list-house" class="form-section">
+            <h2>내놓기(매도) / 구하기(매수)</h2>
+            <p>설명</p>
+            <form>
+                <div class="form-group">
+                    <label for="address">주소</label>
+                    <input type="text" id="address" placeholder="ㅇㅇ시 ㅇㅇ구">
+                    <input type="text" placeholder="ㅇㅇ동 ㅇㅇ호">
+                </div>
+                <div class="form-group">
+                    <label for="transaction-type">거래종류</label>
+                    <select id="transaction-type">
+                        <option>전체 (매매/전세/월세)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="property-type">종류</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> 아파트</label>
+                        <label><input type="checkbox"> 빌라</label>
+                        <label><input type="checkbox"> 원룸</label>
+                        <label><input type="checkbox"> 투룸/쓰리룸</label>
+                        <label><input type="checkbox"> 오피스텔</label>
+                        <label><input type="checkbox"> 상가/사무실</label>
+                        <label><input type="checkbox"> 점포</label>
+                        <label><input type="checkbox"> 대지</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sale-date">매매예정시기</label>
+                    <input type="text" id="sale-date" placeholder="매매예정시기">
+                </div>
+                <div class="form-group">
+                    <label for="visit-time">방문날짜/시간</label>
+                    <input type="text" id="visit-time" placeholder="방문날짜/시간">
+                </div>
+                <div class="form-group">
+                    <label for="area">면적</label>
+                    <input type="text" id="area" placeholder="면적">
+                </div>
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" placeholder="이름">
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일">
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처</label>
+                    <div class="phone-input">
+                        <select>
+                            <option>010</option>
+                        </select>
+                        <input type="text" placeholder="1234">
+                        <input type="text" placeholder="1234">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="notes">문의 또는 요청사항</label>
+                    <textarea id="notes" placeholder="문의 또는 요청사항"></textarea>
+                </div>
+                <button type="submit">전송</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
