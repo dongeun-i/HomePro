@@ -30,7 +30,7 @@ function fetchContent(page) {
 
 function loadContent(page) {
     console.log(page);
-    if (window.location.pathname === '/') {
+    if (window.location.pathname === '/' || window.location.pathname === '/HomPro/') {
         page = '/home';
     }
     fetchContent(page);
