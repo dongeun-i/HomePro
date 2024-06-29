@@ -74,6 +74,10 @@ footer {
     width:300px;
     letter-spacing: 0.5rem;
 }
+.column{
+    display: flex;
+    flex-direction: column;
+}
 
 .spacing{
     margin: 0 auto;

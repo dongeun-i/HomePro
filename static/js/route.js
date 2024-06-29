@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchContent(page) {
-    fetch(`/static/html${page}.html`)
+    return fetch(`/static/html${page}.html`)  // Promise를 반환하도록 return 추가
         .then(response => {
             if (!response.ok) {
                 throw new Error('Page not found');
@@ -36,25 +36,13 @@ function loadContent(page) {
     fetchContent(page);
 }
 
-function fetchContent(page) {
-    fetch(`/static/html${page}.html`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Page not found');
-            }
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById("app").innerHTML = data;
-        })
-        .catch(error => {
-            console.error('Error loading page:', error);
-            document.getElementById("app").innerHTML = `<div>Page not found.</div>`;
-        });
-}
-
-function navigate(path) {
+function navigate(path, formId, title, subtitle) {
     window.history.pushState({}, path, path);
     document.getElementById("app").innerHTML = `<div>Loading...</div>`;
-    fetchContent(path);
+    fetchContent(path).then(() => {
+        if (formId) {
+            showForm(formId, title, subtitle);
+        }
+    });
 }
+

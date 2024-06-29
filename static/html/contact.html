@@ -7,72 +7,178 @@
     <link rel="stylesheet" href="../css/contact.css">
 </head>
 <body>
-    <main>
-        <section id="list-house" class="form-section">
-            <h2>내놓기(매도) / 구하기(매수)</h2>
-            <p>설명</p>
-            <form>
-                <div class="form-group">
-                    <label for="address">주소</label>
-                    <input type="text" id="address" placeholder="ㅇㅇ시 ㅇㅇ구">
-                    <input type="text" placeholder="ㅇㅇ동 ㅇㅇ호">
-                </div>
-                <div class="form-group">
-                    <label for="transaction-type">거래종류</label>
-                    <select id="transaction-type">
-                        <option>전체 (매매/전세/월세)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="property-type">종류</label>
-                    <div class="checkbox-group">
-                        <label><input type="checkbox"> 아파트</label>
-                        <label><input type="checkbox"> 빌라</label>
-                        <label><input type="checkbox"> 원룸</label>
-                        <label><input type="checkbox"> 투룸/쓰리룸</label>
-                        <label><input type="checkbox"> 오피스텔</label>
-                        <label><input type="checkbox"> 상가/사무실</label>
-                        <label><input type="checkbox"> 점포</label>
-                        <label><input type="checkbox"> 대지</label>
+    <section id="list-house" class="form-section">
+        <nav class="breadcrumb">
+            <a onclick="navigate('/home')">홈</a> &gt;
+            <span class="page-title">내놓기(매도)</span>
+        </nav>
+        <div class="form-header">
+            <h2 class="page-title">내놓기(매도)</h2>
+            <p class="page-subtitle">설명</p>
+        </div>
+        <div class="tabs">
+            <button class="tab-button" onclick="showForm('form1', '내놓기(매도)', '매물 정보를 입력하세요')">내놓기(매도)</button>
+            <button class="tab-button" onclick="showForm('form2', '구하기(매수)', '매수 정보를 입력하세요')">구하기(매수)</button>
+            <button class="tab-button" onclick="showForm('form3', 'Q&A', '질문을 입력하세요')">Q&A</button>
+        </div>
+        <div class="form-container">
+            <div id="form1" class="form-content">
+                <!-- 내놓기(매도) 폼 -->
+                <form>
+                    <div class="form-group">
+                        <label for="address1">주소</label>
+                        <div class=" adress-container-wrap">
+                            <div class="adress-container">
+                                <input type="text" id="address1" placeholder="도로명, 지번" readonly>
+                                <button type="button" onclick="execDaumPostcode('postcode1', 'address1')">주소 검색</button>
+                            </div>
+                            <div class="adress-container">
+                                <input type="text" placeholder="상세주소">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="sale-date">매매예정시기</label>
-                    <input type="text" id="sale-date" placeholder="매매예정시기">
-                </div>
-                <div class="form-group">
-                    <label for="visit-time">방문날짜/시간</label>
-                    <input type="text" id="visit-time" placeholder="방문날짜/시간">
-                </div>
-                <div class="form-group">
-                    <label for="area">면적</label>
-                    <input type="text" id="area" placeholder="면적">
-                </div>
-                <div class="form-group">
-                    <label for="name">이름</label>
-                    <input type="text" id="name" placeholder="이름">
-                </div>
-                <div class="form-group">
-                    <label for="email">이메일</label>
-                    <input type="email" id="email" placeholder="이메일">
-                </div>
-                <div class="form-group">
-                    <label for="phone">연락처</label>
-                    <div class="phone-input">
-                        <select>
-                            <option>010</option>
+                    <div class="form-group">
+                        <label for="transaction-type">거래종류</label>
+                        <select id="transaction-type">
+                            <option>전체 (매매/전세/월세)</option>
+                            <option value="1">매매</option>
+                            <option value="2">전세</option>
+                            <option value="3">월세</option>
                         </select>
-                        <input type="text" placeholder="1234">
-                        <input type="text" placeholder="1234">
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="notes">문의 또는 요청사항</label>
-                    <textarea id="notes" placeholder="문의 또는 요청사항"></textarea>
-                </div>
-                <button type="submit">전송</button>
-            </form>
-        </section>
-    </main>
+                    <div class="form-group">
+                        <label for="property-type">종류</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> 아파트</label>
+                            <label><input type="checkbox"> 빌라</label>
+                            <label><input type="checkbox"> 원룸</label>
+                            <label><input type="checkbox"> 투룸/쓰리룸</label>
+                            <label><input type="checkbox"> 오피스텔</label>
+                            <label><input type="checkbox"> 상가/사무실</label>
+                            <label><input type="checkbox"> 점포</label>
+                            <label><input type="checkbox"> 대지</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sale-date">매매예정시기</label>
+                        <input type="text" id="sale-date" placeholder="매매예정시기">
+                    </div>
+                    <div class="form-group">
+                        <label for="visit-time">방문날짜/시간</label>
+                        <input type="text" id="visit-time" placeholder="방문날짜/시간">
+                    </div>
+                    <div class="form-group">
+                        <label for="area">면적</label>
+                        <input type="text" id="area" placeholder="면적">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" placeholder="이름">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일</label>
+                        <input type="email" id="email" placeholder="이메일">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">연락처</label>
+                        <div class="phone-input">
+                            <select>
+                                <option>010</option>
+                            </select>
+                            <input type="text" placeholder="">
+                            <input type="text" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">문의 또는 요청사항</label>
+                        <textarea id="notes" placeholder="문의 또는 요청사항"></textarea>
+                    </div>
+                    <button type="submit">전송</button>
+                </form>
+            </div>
+            <div id="form2" class="form-content" style="display: none;">
+                <!-- 내놓기(매도) 폼 -->
+                <form>
+                    <div class="form-group">
+                        <label for="address1">주소</label>
+                        <div class=" adress-container-wrap">
+                            <div class="adress-container">
+                                <input type="text" id="address1" placeholder="도로명, 지번" readonly>
+                                <button type="button" onclick="execDaumPostcode('postcode1', 'address1')">주소 검색</button>
+                            </div>
+                            <div class="adress-container">
+                                <input type="text" placeholder="상세주소">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="transaction-type">거래종류</label>
+                        <select id="transaction-type">
+                            <option>전체 (매매/전세/월세)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-type">종류</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> 아파트</label>
+                            <label><input type="checkbox"> 빌라</label>
+                            <label><input type="checkbox"> 원룸</label>
+                            <label><input type="checkbox"> 투룸/쓰리룸</label>
+                            <label><input type="checkbox"> 오피스텔</label>
+                            <label><input type="checkbox"> 상가/사무실</label>
+                            <label><input type="checkbox"> 점포</label>
+                            <label><input type="checkbox"> 대지</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sale-date">매매예정시기</label>
+                        <input type="text" id="sale-date" placeholder="매매예정시기">
+                    </div>
+                    <div class="form-group">
+                        <label for="visit-time">방문날짜/시간</label>
+                        <input type="text" id="visit-time" placeholder="방문날짜/시간">
+                    </div>
+                    <div class="form-group">
+                        <label for="area">면적</label>
+                        <input type="text" id="area" placeholder="면적">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" placeholder="이름">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일</label>
+                        <input type="email" id="email" placeholder="이메일">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">연락처</label>
+                        <div class="phone-input">
+                            <select>
+                                <option>010</option>
+                            </select>
+                            <input type="text" placeholder="">
+                            <input type="text" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">문의 또는 요청사항</label>
+                        <textarea id="notes" placeholder="문의 또는 요청사항"></textarea>
+                    </div>
+                    <button type="submit">전송</button>
+                </form>
+            </div>
+            <div id="form3" class="form-content" style="display: none;">
+                <!-- Q&A 폼 -->
+                <form>
+                    <div class="form-group">
+                        <label for="question">질문</label>
+                        <textarea id="question" placeholder="질문을 입력하세요"></textarea>
+                    </div>
+                    <button type="submit">전송</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="../js/script.js"></script>
 </body>
 </html>
