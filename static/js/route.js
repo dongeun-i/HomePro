@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchContent(page) {
-    return fetch(`HomPro/static/html${page}.html`)  // Promise를 반환하도록 return 추가
+    return fetch(`HomePro/static/html${page}.html`)  // Promise를 반환하도록 return 추가
         .then(response => {
             if (!response.ok) {
                 throw new Error('Page not found');
@@ -37,7 +37,7 @@ function loadContent(page) {
 }
 
 function navigate(path, formId, title, subtitle) {
-    window.history.pushState({}, path, path);
+    window.history.pushState({}, '/HomePro'+path, path);
     document.getElementById("app").innerHTML = `<div>Loading...</div>`;
     fetchContent(path).then(() => {
         if (formId) {
