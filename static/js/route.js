@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchContent(page) {
-    return fetch(`/HomPro//static/html${page}.html`)  // Promise를 반환하도록 return 추가
+    return fetch(`/HomPro/static/html${page}.html`)  // Promise를 반환하도록 return 추가
         .then(response => {
             if (!response.ok) {
                 throw new Error('Page not found');
