@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+# HTML 파일이나 디렉토리가 존재하지 않으면 index.html로 리디렉션
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
