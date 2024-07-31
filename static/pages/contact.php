@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label for="property-type">종류</label>
                         <div class="checkbox-group">
-                            <?=codeRadio::getCodeRadio(3,true,'type',)?>
+                            <?=codeRadio::getCodeRadio(3,'type',true)?>
                         </div>
                     </div>
                     <div class="form-group">
@@ -119,7 +119,7 @@
                     <div class="form-group">
                         <label for="property-type">종류</label>
                         <div class="checkbox-group">
-                            <?=codeRadio::getCodeRadio(5,true,'type',)?>
+                            <?=codeRadio::getCodeRadio(5,'type',true)?>
                         </div>
                     </div>
                     <div class="form-group">
