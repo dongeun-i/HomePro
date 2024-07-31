@@ -1,13 +1,16 @@
+<?php
+    require_once $_SERVER['DOCUMENT_ROOT'].'/config/index.php';
+?>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내놓기 / 구하기</title>
-    <link rel="stylesheet" href="/HomePro/static/css/contact.css">
+    <link rel="stylesheet" href="static/css/contact.css">
 </head>
 <body>
-    <section id="list-house" class="form-section">
+    <section id="list-house" class="form-section" >
         <nav class="breadcrumb">
             <a onclick="navigate('/home')">홈</a> &gt;
             <span class="page-title">내놓기(매도)</span>
@@ -24,16 +27,16 @@
         <div class="form-container">
             <div id="form1" class="form-content">
                 <!-- 내놓기(매도) 폼 -->
-                <form>
+                <form id="sellForm">
                     <div class="form-group">
                         <label for="address1">주소</label>
                         <div class=" adress-container-wrap">
                             <div class="adress-container">
-                                <input type="text" id="address1" placeholder="도로명, 지번" readonly>
+                                <input type="text" id="address1" placeholder="도로명, 지번" required readonly>
                                 <button type="button" onclick="execDaumPostcode('postcode1', 'address1')">주소 검색</button>
                             </div>
                             <div class="adress-container">
-                                <input type="text" placeholder="상세주소">
+                                <input type="text" placeholder="상세주소" required>
                             </div>
                         </div>
                     </div>
@@ -41,39 +44,32 @@
                         <label for="transaction-type">거래종류</label>
                         <select id="transaction-type">
                             <option>전체 (매매/전세/월세)</option>
-                            <option value="1">매매</option>
-                            <option value="2">전세</option>
-                            <option value="3">월세</option>
+                            <?=
+                                codeSelect::getCodeSelect(2);
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="property-type">종류</label>
                         <div class="checkbox-group">
-                            <label><input type="checkbox"> 아파트</label>
-                            <label><input type="checkbox"> 빌라</label>
-                            <label><input type="checkbox"> 원룸</label>
-                            <label><input type="checkbox"> 투룸/쓰리룸</label>
-                            <label><input type="checkbox"> 오피스텔</label>
-                            <label><input type="checkbox"> 상가/사무실</label>
-                            <label><input type="checkbox"> 점포</label>
-                            <label><input type="checkbox"> 대지</label>
+                            <?=codeRadio::getCodeRadio(3,true,'type',)?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="sale-date">매매예정시기</label>
-                        <input type="text" id="sale-date" placeholder="매매예정시기">
+                        <input type="text" id="sale-date" placeholder="매매예정시기" required>
                     </div>
                     <div class="form-group">
                         <label for="visit-time">방문날짜/시간</label>
-                        <input type="text" id="visit-time" placeholder="방문날짜/시간">
+                        <input type="text" id="visit-time" placeholder="방문날짜/시간" required>
                     </div>
                     <div class="form-group">
                         <label for="area">면적</label>
-                        <input type="text" id="area" placeholder="면적">
+                        <input type="text" id="area" placeholder="면적" required>
                     </div>
                     <div class="form-group">
                         <label for="name">이름</label>
-                        <input type="text" id="name" placeholder="이름">
+                        <input type="text" id="name" placeholder="이름" required>
                     </div>
                     <div class="form-group">
                         <label for="email">이메일</label>
@@ -85,20 +81,20 @@
                             <select>
                                 <option>010</option>
                             </select>
-                            <input type="text" placeholder="">
-                            <input type="text" placeholder="">
+                            <input type="text" placeholder="" required>
+                            <input type="text" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="notes">문의 또는 요청사항</label>
                         <textarea id="notes" placeholder="문의 또는 요청사항"></textarea>
                     </div>
-                    <button type="submit">전송</button>
+                    <button class="submit-btn" type="button" onclick="submitForm('sellForm')" >전송</button>
                 </form>
             </div>
             <div id="form2" class="form-content" style="display: none;">
-                <!-- 내놓기(매도) 폼 -->
-                <form>
+                <!-- 구하기(매수) 폼 -->
+                <form id="buyForm">
                     <div class="form-group">
                         <label for="address1">주소</label>
                         <div class=" adress-container-wrap">
@@ -115,19 +111,15 @@
                         <label for="transaction-type">거래종류</label>
                         <select id="transaction-type">
                             <option>전체 (매매/전세/월세)</option>
+                            <?=
+                                codeSelect::getCodeSelect(4);
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="property-type">종류</label>
                         <div class="checkbox-group">
-                            <label><input type="checkbox"> 아파트</label>
-                            <label><input type="checkbox"> 빌라</label>
-                            <label><input type="checkbox"> 원룸</label>
-                            <label><input type="checkbox"> 투룸/쓰리룸</label>
-                            <label><input type="checkbox"> 오피스텔</label>
-                            <label><input type="checkbox"> 상가/사무실</label>
-                            <label><input type="checkbox"> 점포</label>
-                            <label><input type="checkbox"> 대지</label>
+                            <?=codeRadio::getCodeRadio(5,true,'type',)?>
                         </div>
                     </div>
                     <div class="form-group">
@@ -164,21 +156,20 @@
                         <label for="notes">문의 또는 요청사항</label>
                         <textarea id="notes" placeholder="문의 또는 요청사항"></textarea>
                     </div>
-                    <button type="submit">전송</button>
+                    <button class="submit-btn" type="button" onclick="submitForm('buyForm')" >전송</button>
                 </form>
             </div>
             <div id="form3" class="form-content" style="display: none;">
                 <!-- Q&A 폼 -->
-                <form>
+                <form id="qaForm">
                     <div class="form-group">
                         <label for="question">질문</label>
                         <textarea id="question" placeholder="질문을 입력하세요"></textarea>
                     </div>
-                    <button type="submit">전송</button>
+                    <button class="submit-btn" type="button" onclick="submitForm('qaForm')" >전송</button>
                 </form>
             </div>
         </div>
     </section>
-    <script src="../js/script.js"></script>
 </body>
 </html>

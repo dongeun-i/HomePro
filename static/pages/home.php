@@ -18,7 +18,7 @@
     <footer>
         <div class="footer-content">
 			<div class="qrcode">
-				<img src="https://via.placeholder.com/100x100" alt="">
+				<img src="/static/img/qrcode.png" alt="">
 			</div>
 			<div class="info">
 				<div class="info-row">
@@ -51,12 +51,12 @@
 				</div>
 			</div>
 		</div>
-        <div class="social-icons">
+        <!-- <div class="social-icons"> -->
             <!-- <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
             <a href="#"><img src="linkedin-icon.png" alt="LinkedIn"></a>
             <a href="#"><img src="youtube-icon.png" alt="YouTube"></a>
             <a href="#"><img src="instagram-icon.png" alt="Instagram"></a> -->
-        </div>
+        <!-- </div> -->
     </footer>
 </body>
 </html>

@@ -32,8 +32,38 @@ function execDaumPostcode(postcodeId, addressId) {
             const postcode = document.getElementById(postcodeId);
             const address = document.getElementById(addressId);
 
-            postcode.value = data.zonecode;
+            // postcode.value = data.zonecode;
             address.value = data.address;
         }
     }).open();
+}
+
+function submitForm(formId) {
+    var form = document.getElementById(formId);
+
+    // 유효성 검사
+    if (!form.checkValidity()) {
+        alert('모든 필수 필드를 입력해주세요.');
+        return false;
+    }
+
+    // 폼 데이터를 가져오기
+    var formData = new FormData(form);
+    console.log(formData);
+    return false;
+    // Ajax 요청 보내기
+    fetch('process/contact_proc.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        alert('폼이 성공적으로 제출되었습니다.');
+        console.log(result);
+    })
+    .catch(error => {
+        console.error('오류가 발생했습니다:', error);
+    });
+
+    return false; // 폼이 실제로 제출되지 않도록 함
 }

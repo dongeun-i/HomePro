@@ -113,7 +113,7 @@ body {
 }
 
 .adress-container input,
-.form-group input:not([type="checkbox"]),
+.form-group input:not([type="radio"]),
 .form-group select,
 .form-group textarea {
     width: calc(100% - 150px);
@@ -160,7 +160,7 @@ body {
     flex: 1;
 }
 
-button[type="submit"] {
+.submit-btn {
     display: block;
     width: 100%;
     padding: 10px;
@@ -174,7 +174,7 @@ button[type="submit"] {
     margin-top: 100px;
 }
 
-button[type="submit"]:hover {
+.submit-btn:hover {
     background-color: #333;
 }
 

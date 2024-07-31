@@ -12,8 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchContent(page) {
-    return fetch(`HomePro/static/html${page}.html`)  // Promise를 반환하도록 return 추가
+    return fetch(`static/pages${page}.php`)  // Promise를 반환하도록 return 추가
         .then(response => {
+            
             if (!response.ok) {
                 throw new Error('Page not found');
             }
@@ -30,14 +31,14 @@ function fetchContent(page) {
 
 function loadContent(page) {
     console.log(page);
-    if (window.location.pathname === '/' || window.location.pathname === '/HomePro/') {
+    if (window.location.pathname === '/' || window.location.pathname === '') {
         page = '/home';
     }
     fetchContent(page);
 }
 
 function navigate(path, formId, title, subtitle) {
-    window.history.pushState({}, '/HomePro'+path, path);
+    window.history.pushState({}, '/'+path, path);
     document.getElementById("app").innerHTML = `<div>Loading...</div>`;
     fetchContent(path).then(() => {
         if (formId) {
