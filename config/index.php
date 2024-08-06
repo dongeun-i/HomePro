@@ -1,13 +1,6 @@
 <?php
-// require $_SERVER['DOCUMENT_ROOT'] . '/config/Autoload.php';
-require 'AutoLoad.php';
-
-// session_start();
-
+require_once 'AutoLoad.php';
 Autoload::loadRun();
-
 date_default_timezone_set('Asia/Seoul');
-// header('Content-Type: text/html; charset=UTF-8');
-
-$db = new Database();
-
+// header('Content-Type: text/html; charset=UTF-8'); // 필요시 설정
+?>

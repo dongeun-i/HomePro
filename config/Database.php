@@ -3,7 +3,7 @@ class Database {
     private $host = Config::DB_HOST; 
     private $username = Config::DB_USER; 
     private $password = Config::DB_PASS; 
-    private $database = 'hompro'; 
+    private $database = 'kid4414'; 
     private $port = Config::DB_PORT;
     private $conn;
 

@@ -1,5 +1,5 @@
 <?
-	class codeSelect extends BaseSelect{
+	class CodeSelect extends BaseSelect{
 		public static function getCodeSelect($code_group_id){
 			$db = new Database();
 

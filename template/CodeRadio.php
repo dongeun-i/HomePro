@@ -1,5 +1,5 @@
 <?
-	class codeRadio extends BaseInputLabel {
+	class CodeRadio extends BaseInputLabel {
 		public static function getCodeRadio($code_group_id, $name = '', $required = false) {
 			// 데이터베이스 객체 생성
 			$db = new Database();

@@ -28,66 +28,68 @@
             <div id="form1" class="form-content">
                 <!-- 내놓기(매도) 폼 -->
                 <form id="sellForm">
+                    <input type="hidden" name="mode" value="sellForm">
                     <div class="form-group">
                         <label for="address1">주소</label>
                         <div class=" adress-container-wrap">
                             <div class="adress-container">
-                                <input type="text" id="address1" placeholder="도로명, 지번" required readonly>
+                                <input type="text" id="address1" name="address" placeholder="도로명, 지번" required readonly>
                                 <button type="button" onclick="execDaumPostcode('postcode1', 'address1')">주소 검색</button>
                             </div>
                             <div class="adress-container">
-                                <input type="text" placeholder="상세주소" required>
+                                <input type="text" name="detail_address" placeholder="상세주소" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="transaction-type">거래종류</label>
-                        <select id="transaction-type">
+                        <select id="transaction-type" name="category">
                             <option>전체 (매매/전세/월세)</option>
                             <?=
-                                codeSelect::getCodeSelect(2);
+                                CodeSelect::getCodeSelect(2);
                             ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="property-type">종류</label>
                         <div class="checkbox-group">
-                            <?=codeRadio::getCodeRadio(3,'type',true)?>
+                            <?=CodeRadio::getCodeRadio(3,'type',false)?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="sale-date">매매예정시기</label>
-                        <input type="text" id="sale-date" placeholder="매매예정시기" required>
+                        <input type="date" id="sale-date" name="sale_date" placeholder="매매예정시기" required>
                     </div>
                     <div class="form-group">
-                        <label for="visit-time">방문날짜/시간</label>
-                        <input type="text" id="visit-time" placeholder="방문날짜/시간" required>
+                        <label for="visit_time">방문날짜/시간</label>
+                        <input type="date" id="visit_date" name="visit_date" placeholder="방문날짜" required>
+                        <input type="time" id="visit_time" name="visit_time" placeholder="방문시간" required>
                     </div>
                     <div class="form-group">
                         <label for="area">면적</label>
-                        <input type="text" id="area" placeholder="면적" required>
+                        <input type="text" id="area" name="area" placeholder="면적" required>
                     </div>
                     <div class="form-group">
-                        <label for="name">이름</label>
-                        <input type="text" id="name" placeholder="이름" required>
+                        <label for="requester">이름</label>
+                        <input type="text" id="requester" name="requester" placeholder="이름" required>
                     </div>
                     <div class="form-group">
                         <label for="email">이메일</label>
-                        <input type="email" id="email" placeholder="이메일">
+                        <input type="email" id="email" name="email" placeholder="이메일">
                     </div>
                     <div class="form-group">
                         <label for="phone">연락처</label>
                         <div class="phone-input">
-                            <select>
+                            <select name="tel_01">
                                 <option>010</option>
                             </select>
-                            <input type="text" placeholder="" required>
-                            <input type="text" placeholder="" required>
+                            <input type="text" name="tel_02" placeholder="" required>
+                            <input type="text" name="tel_03" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="notes">문의 또는 요청사항</label>
-                        <textarea id="notes" placeholder="문의 또는 요청사항"></textarea>
+                        <label for="memo">문의 또는 요청사항</label>
+                        <textarea id="memo" name="memo" placeholder="문의 또는 요청사항"></textarea>
                     </div>
                     <button class="submit-btn" type="button" onclick="submitForm('sellForm')" >전송</button>
                 </form>
@@ -95,21 +97,23 @@
             <div id="form2" class="form-content" style="display: none;">
                 <!-- 구하기(매수) 폼 -->
                 <form id="buyForm">
+                    <input type="hidden" name="mode" value="buyForm">
+
                     <div class="form-group">
                         <label for="address1">주소</label>
                         <div class=" adress-container-wrap">
                             <div class="adress-container">
-                                <input type="text" id="address1" placeholder="도로명, 지번" readonly>
-                                <button type="button" onclick="execDaumPostcode('postcode1', 'address1')">주소 검색</button>
+                                <input type="text" id="address2" placeholder="도로명, 지번" name="address" readonly>
+                                <button type="button" onclick="execDaumPostcode('postcode1', 'address2')">주소 검색</button>
                             </div>
                             <div class="adress-container">
-                                <input type="text" placeholder="상세주소">
+                                <input type="text" name="detail_address" placeholder="상세주소">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="transaction-type">거래종류</label>
-                        <select id="transaction-type">
+                        <select id="transaction-type" name="category">
                             <option>전체 (매매/전세/월세)</option>
                             <?=
                                 codeSelect::getCodeSelect(4);
@@ -123,38 +127,39 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sale-date">매매예정시기</label>
-                        <input type="text" id="sale-date" placeholder="매매예정시기">
+                        <label for="buy-date">매매예정시기</label>
+                        <input type="date" id="order_date"  name="order_date" placeholder="매매예정시기">
                     </div>
                     <div class="form-group">
                         <label for="visit-time">방문날짜/시간</label>
-                        <input type="text" id="visit-time" placeholder="방문날짜/시간">
+                        <input type="date" id="visit_date" name="visit_date" placeholder="방문날짜" required>
+                        <input type="time" id="visit_time" name="visit_time" placeholder="방문시간" required>
                     </div>
                     <div class="form-group">
                         <label for="area">면적</label>
-                        <input type="text" id="area" placeholder="면적">
+                        <input type="text" id="area" name="area" placeholder="면적">
                     </div>
                     <div class="form-group">
-                        <label for="name">이름</label>
-                        <input type="text" id="name" placeholder="이름">
+                        <label for="requester">이름</label>
+                        <input type="text" id="requester" name="requester" placeholder="이름">
                     </div>
                     <div class="form-group">
                         <label for="email">이메일</label>
-                        <input type="email" id="email" placeholder="이메일">
+                        <input type="email" id="email" name="email" placeholder="이메일">
                     </div>
                     <div class="form-group">
                         <label for="phone">연락처</label>
                         <div class="phone-input">
-                            <select>
+                            <select name="tel_01">
                                 <option>010</option>
                             </select>
-                            <input type="text" placeholder="">
-                            <input type="text" placeholder="">
+                            <input type="text" name="tel_02" placeholder="" required>
+                            <input type="text" name="tel_03" placeholder="" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="notes">문의 또는 요청사항</label>
-                        <textarea id="notes" placeholder="문의 또는 요청사항"></textarea>
+                        <label for="memo">문의 또는 요청사항</label>
+                        <textarea id="memo" name="memo" placeholder="문의 또는 요청사항"></textarea>
                     </div>
                     <button class="submit-btn" type="button" onclick="submitForm('buyForm')" >전송</button>
                 </form>
@@ -162,6 +167,7 @@
             <div id="form3" class="form-content" style="display: none;">
                 <!-- Q&A 폼 -->
                 <form id="qaForm">
+                    <input type="hidden" name="mode" value="qa">
                     <div class="form-group">
                         <label for="question">질문</label>
                         <textarea id="question" placeholder="질문을 입력하세요"></textarea>

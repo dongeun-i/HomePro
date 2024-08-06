@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchContent(page) {
-    return fetch(`static/pages${page}.php`)  // Promise를 반환하도록 return 추가
+    console.log(`Fetching content from: static/pages${page}.php`);  // 디버깅 로그 추가
+    return fetch(`static/pages${page}.php`)
         .then(response => {
-            
             if (!response.ok) {
                 throw new Error('Page not found');
             }
@@ -28,6 +28,7 @@ function fetchContent(page) {
             document.getElementById("app").innerHTML = `<div>Page not found.</div>`;
         });
 }
+
 
 function loadContent(page) {
     console.log(page);
