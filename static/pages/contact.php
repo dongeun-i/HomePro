@@ -57,6 +57,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="property-type">방갯수</label>
+                        <div class="checkbox-group">
+                            <?=CodeRadio::getCodeRadio(6,'room_type',false)?>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="sale-date">매매예정시기</label>
                         <input type="date" id="sale-date" name="sale_date" placeholder="매매예정시기" required>
                     </div>
@@ -66,8 +72,8 @@
                         <input type="time" id="visit_time" name="visit_time" placeholder="방문시간" required>
                     </div>
                     <div class="form-group">
-                        <label for="area">면적</label>
-                        <input type="text" id="area" name="area" placeholder="면적" required>
+                        <label for="area">평형</label>
+                        <input type="text" id="area" name="area" placeholder="평형" required>
                     </div>
                     <div class="form-group">
                         <label for="requester">이름</label>
@@ -124,6 +130,12 @@
                         <label for="property-type">종류</label>
                         <div class="checkbox-group">
                             <?=codeRadio::getCodeRadio(5,'type',true)?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-type">방갯수</label>
+                        <div class="checkbox-group">
+                            <?=CodeRadio::getCodeRadio(7,'room_type',false)?>
                         </div>
                     </div>
                     <div class="form-group">

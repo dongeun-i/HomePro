@@ -22,6 +22,7 @@ function fetchContent(page) {
         })
         .then(data => {
             document.getElementById("app").innerHTML = data;
+            pageInit(page);
         })
         .catch(error => {
             console.error('Error loading page:', error);
@@ -31,11 +32,21 @@ function fetchContent(page) {
 
 
 function loadContent(page) {
-    console.log(page);
     if (window.location.pathname === '/' || window.location.pathname === '') {
         page = '/home';
     }
     fetchContent(page);
+}
+
+function pageInit(page){
+    switch(page){
+        case"/sales_list":
+        case"/order_list":
+            var _table_id = page.replace(/^\//,'');
+            createDataTable(_table_id);
+        break
+    }
+
 }
 
 function navigate(path, formId, title, subtitle) {

@@ -5,6 +5,7 @@ function autoload($className)
     $directories = [
         $_SERVER['DOCUMENT_ROOT'] . '/config/',
         $_SERVER['DOCUMENT_ROOT'] . '/template/',
+        $_SERVER['DOCUMENT_ROOT'] . '/model/',
     ];
 
     $className = str_replace("\\", DIRECTORY_SEPARATOR, $className);

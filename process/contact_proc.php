@@ -13,12 +13,17 @@ $db = new Database();
 $tel = $tel_01 . '-' .$tel_02.'-'.$tel_03;
 if($mode == 'sellForm'){
 	// 매매
+	$building_type_txt = Code::getSelectOne($type)['name'];
+	$room_type_txt = Code::getSelectOne($room_type)['name'];
 	$insert_data = array(
 		'sale_kind'=>$category,
 		'building_type' => $type,
+		'building_type_txt' => $building_type_txt,
 		'sales_dt' => $sale_date,
 		'address' => $address,
 		'detail_address' => $detail_address,
+		'room_type'=>$room_type,
+		'room_type_txt'=>$room_type_txt,
 		'area' => $area,
 		'meeting_dt' => $visit_date.' '.$visit_time,
 		'requester' => $requester,
@@ -27,7 +32,6 @@ if($mode == 'sellForm'){
 		'memo' => $memo,
 		'regi_dt'=>date('Y-m-d H:i:s')
 	);
-	//print_r($insert_data);
 	$result = $db->insert('sales',$insert_data);
 	if($result > 0){
 		$res_data['success'] = true;
@@ -44,12 +48,17 @@ if($mode == 'sellForm'){
 
 }elseif($mode=="buyForm"){
 	// 매수
+	$building_type_txt = Code::getSelectOne($type)['name'];
+	$room_type_txt = Code::getSelectOne($room_type)['name'];
 	$insert_data = array(
 		'order_kind'=>$category,
 		'building_type' => $type,
+		'building_type_txt' => $building_type_txt,
 		'order_dt' => $order_date,
 		'address' => $address,
 		'detail_address' => $detail_address,
+		'room_type'=>$room_type,
+		'room_type_txt'=>$room_type_txt,
 		'area' => $area,
 		'meeting_dt' => $visit_date.' '.$visit_time,
 		'requester' => $requester,

@@ -1,0 +1,71 @@
+        /* 테이블 컨테이너 스타일 */
+        .container {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 1200px;
+        }
+		.table-wrap{
+			width: 90vw;
+			margin:0 auto
+		}
+
+      /* 테이블 헤더 스타일 */
+		th {
+			background-color: #555;
+			color: white;
+			text-align: center;
+			padding: 10px 20px;
+			white-space: nowrap; /* 헤더 텍스트 줄바꿈 방지 */
+			border: 0.5px solid #fff;
+		}
+
+		/* 테이블 본문 스타일 */
+		td {
+			text-align: center;
+			padding: 8px;
+			white-space: nowrap; /* 본문 텍스트 줄바꿈 방지 */
+		}
+
+        /* 행을 호버할 때 스타일 */
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* 검색창 스타일 */
+        .dataTables_filter input {
+            margin-left: 5px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+			margin-bottom:10px;
+        }
+
+        /* 페이지네이션 스타일 */
+        .dataTables_paginate .paginate_button {
+            padding: 8px 16px;
+            margin: 5px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .dataTables_paginate .paginate_button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        /* 테이블의 맨 위 검색창 스타일 */
+        .dataTables_filter {
+            float: right;
+        }
+
+        /* 테이블의 정보 텍스트 스타일 */
+        .dataTables_info {
+            float: left;
+        }
+
+        /* 테이블 정렬 아이콘 스타일 */
+        th.sorting, th.sorting_asc, th.sorting_desc {
+            cursor: pointer;
+        }

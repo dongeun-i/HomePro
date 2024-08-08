@@ -24,6 +24,33 @@ function showForm(formId, title, subtitle) {
     const pageSubtitleElements = document.querySelectorAll('.page-subtitle');
     pageSubtitleElements.forEach(el => el.textContent = subtitle);
 }
+function showList(id,title,subtitle){
+    const page_container = document.querySelectorAll('.list-content');
+    page_container.forEach(form => {
+        form.style.display = 'none';
+        form.classList.remove('active');
+    });
+
+    const activeList = document.getElementById(id);
+    activeList.style.display = 'block';
+    activeList.classList.add('active');
+
+    const buttons = document.querySelectorAll('.tab-button');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+
+    const activeButton = document.querySelector(`.tab-button[onclick="showForm('${formId}', '${title}', '${subtitle}')"]`);
+    
+    if (activeButton) {
+        activeButton.classList.add('active');
+    }
+    const pageTitleElements = document.querySelectorAll('.page-title');
+    pageTitleElements.forEach(el => el.textContent = title);
+
+    const pageSubtitleElements = document.querySelectorAll('.page-subtitle');
+    pageSubtitleElements.forEach(el => el.textContent = subtitle); 
+}
 
 
 function execDaumPostcode(postcodeId, addressId) {
@@ -49,7 +76,6 @@ function submitForm(formId) {
 
     // 폼 데이터를 가져오기
     var formData = new FormData(form);
-    console.log(formData);
     $.ajax({
         url: 'process/contact_proc.php',
         data: formData,
