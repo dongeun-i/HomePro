@@ -24,6 +24,7 @@ function showForm(formId, title, subtitle) {
     const pageSubtitleElements = document.querySelectorAll('.page-subtitle');
     pageSubtitleElements.forEach(el => el.textContent = subtitle);
 }
+
 function showList(id,title,subtitle){
     const page_container = document.querySelectorAll('.list-content');
     page_container.forEach(form => {
@@ -51,7 +52,6 @@ function showList(id,title,subtitle){
     const pageSubtitleElements = document.querySelectorAll('.page-subtitle');
     pageSubtitleElements.forEach(el => el.textContent = subtitle); 
 }
-
 
 function execDaumPostcode(postcodeId, addressId) {
     new daum.Postcode({
@@ -96,6 +96,7 @@ function submitForm(formId) {
     return false; // 폼이 실제로 제출되지 않도록 함
 }
 
+
 function login(){
     var form = document.getElementById('loginForm');
     var formData = new FormData(form);
@@ -116,3 +117,8 @@ function login(){
     });
     return false;
 }
+
+function openRegiQa(){
+    window.open('/edit_question',"_blank", "width=500,height=500");
+}
+

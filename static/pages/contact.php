@@ -22,7 +22,7 @@
         <div class="tabs">
             <button class="tab-button" onclick="showForm('form1', '내놓기(매도)', '매물 정보를 입력하세요')">내놓기(매도)</button>
             <button class="tab-button" onclick="showForm('form2', '구하기(매수)', '매수 정보를 입력하세요')">구하기(매수)</button>
-            <button class="tab-button" onclick="showForm('form3', 'Q&A', '질문을 입력하세요')">Q&A</button>
+            <button class="tab-button" onclick="navigate('/qa')">Q&A</button>
         </div>
         <div class="form-container">
             <div id="form1" class="form-content">
@@ -174,17 +174,6 @@
                         <textarea id="memo" name="memo" placeholder="문의 또는 요청사항"></textarea>
                     </div>
                     <button class="submit-btn" type="button" onclick="submitForm('buyForm')" >전송</button>
-                </form>
-            </div>
-            <div id="form3" class="form-content" style="display: none;">
-                <!-- Q&A 폼 -->
-                <form id="qaForm">
-                    <input type="hidden" name="mode" value="qa">
-                    <div class="form-group">
-                        <label for="question">질문</label>
-                        <textarea id="question" placeholder="질문을 입력하세요"></textarea>
-                    </div>
-                    <button class="submit-btn" type="button" onclick="submitForm('qaForm')" >전송</button>
                 </form>
             </div>
         </div>

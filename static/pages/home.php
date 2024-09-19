@@ -12,7 +12,7 @@
 		<div class="buttons">
 			<button onclick="navigate('/contact', 'form1', '내놓기(매도)', '매물 정보를 입력하세요')">집 내놓기</button>
 			<button onclick="navigate('/contact', 'form2', '구하기(매수)', '매수 정보를 입력하세요')">집 구하기</button>
-			<button onclick="navigate('/contact', 'form3', 'Q&A', '질문을 입력하세요')">Q&A</button>	
+			<button onclick="navigate('/qa')">Q&A</button>	
 		</div>
 	</section>
     <footer>
