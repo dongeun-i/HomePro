@@ -1,19 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
     window.onpopstate = () => {
         const path = window.location.pathname;
-        loadContent(path);
+        const queryParams = window.location.search;  // 쿼리스트링 처리 추가
+        loadContent(path, queryParams);
     };
 
     // 페이지 로드 시에도 초기 콘텐츠 로드
     window.addEventListener('load', () => {
         const initialPath = window.location.pathname === '/' ? '/home' : window.location.pathname;
-        loadContent(initialPath);
+        const queryParams = window.location.search;  // 쿼리스트링 포함
+        loadContent(initialPath, queryParams);
     });
 });
 
-function fetchContent(page) {
-    console.log(`Fetching content from: static/pages${page}.php`);  // 디버깅 로그 추가
-    return fetch(`static/pages${page}.php`)
+function fetchContent(page, queryParams = '') {
+    // 페이지에 쿼리스트링이 있으면 포함하여 요청
+    const fetchUrl = `static/pages${page}.php${queryParams}`;
+    console.log(`Fetching content from: ${fetchUrl}`);  // 디버깅 로그 추가
+    console.log(`queryParams = ${queryParams}`);
+    return fetch(fetchUrl)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Page not found');
@@ -53,15 +58,15 @@ function loadPageScript(page) {
             console.error('Error loading script:', error);
         });
 }
-
-function loadContent(page) {
-    if (window.location.pathname === '/' || window.location.pathname === '') {
+function loadContent(page, queryParams = '') {
+    // 기본 경로 설정
+    if (page === '/' || page === '') {
         page = '/home';
     }
-    if (window.location.pathname === '/edit_question') {
-        page = '/edit_question';
-    }
-    fetchContent(page);
+    // if (window.location.pathname === '/edit_question') {
+    //     page = '/edit_question';
+    // }
+    fetchContent(page, queryParams);
 }
 
 function pageInit(page) {
@@ -74,7 +79,7 @@ function pageInit(page) {
 
         case "/qa":
             $(".question-row").click(function() {
-                $(this).next(".answer-row").find(".answer").slideToggle(150);
+                $(this).next(".answer-row").find(".answer").slideToggle(100);
             });
             // '비밀번호 입력' 버튼 클릭 시, 비밀번호 입력창 표시
             document.querySelectorAll('.show-password').forEach(function(button) {
@@ -97,7 +102,7 @@ function pageInit(page) {
             function checkPassword(index, correctPassword) {
                 var inputPassword = document.getElementById('password-' + index).value;
                 if (inputPassword === correctPassword) {
-                    alert('비밀번호가 맞습니다. 내용을 확인합니다.');
+                    // alert('비밀번호가 맞습니다. 내용을 확인합니다.');
                     // 비밀글 내용을 표시
                     var questionRow = document.querySelector(`.question-hidden-row-${index}`); // 질문 행
                     var answerRow = document.querySelector(`.answer-hidden-row-${index}`); // 답변 행
@@ -107,8 +112,9 @@ function pageInit(page) {
                         secrete_q.style.display='none';
                     }
                     
-                    if (answerRow && answerRow.classList.contains('answer-row')) {
+                    if (answerRow) {
                         answerRow.style.display = 'table-row'; // 답변 행 표시
+                        $(answerRow).find(".answer").slideToggle(100);
                     }
             
                     // 비밀번호 입력창 숨기기
@@ -121,10 +127,14 @@ function pageInit(page) {
     }
 }
 
-function navigate(path, formId, title, subtitle) {
-    window.history.pushState({}, '/'+path, path);
+function navigate(path, formId, title, subtitle, queryParams = '') {
+    // URL에 쿼리스트링 포함
+    const fullPath = path + queryParams;
+    window.history.pushState({}, '', fullPath);  // 경로에 쿼리스트링 추가
     document.getElementById("app").innerHTML = `<div>Loading...</div>`;
-    fetchContent(path).then(() => {
+
+    // 쿼리스트링 포함한 콘텐츠 로드
+    fetchContent(path, queryParams).then(() => {
         if (formId) {
             showForm(formId, title, subtitle);
         }

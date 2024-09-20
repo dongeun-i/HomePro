@@ -38,36 +38,26 @@ if($mode == 'question'){
 	}
 
 }elseif($mode=="answer"){
-	// 매수
-	$building_type_txt = Code::getSelectOne($type)['name'];
-	$room_type_txt = Code::getSelectOne($room_type)['name'];
-	$insert_data = array(
-		'order_kind'=>$category,
-		'building_type' => $type,
-		'building_type_txt' => $building_type_txt,
-		'order_dt' => $order_date,
-		'address' => $address,
-		'detail_address' => $detail_address,
-		'room_type'=>$room_type,
-		'room_type_txt'=>$room_type_txt,
-		'area' => $area,
-		'meeting_dt' => $visit_date.' '.$visit_time,
-		'requester' => $requester,
-		'email' => $email,
-		'tel' => $tel,
-		'memo' => $memo,
-		'regi_dt'=>date('Y-m-d H:i:s')
+
+	$update_data = array(
+		'answer_dt'=>date('Y-m-d H:i:s'),
+		'is_answer' => 1,
+		'answer' =>$answer
 	);
 	//print_r($insert_data);
-	$result = $db->insert('orders',$insert_data);
+	$result = $db->update('qa',$update_data,array('id'=>$id));
 	if($result > 0){
-		$res_data['success'] = true;
-		$res_data['msg'] = '등록이 완료되었습니다. 감사합니다.';
+		echo"<script>
+		alert('등록이 완료되었습니다');
+		if (window.opener) {
+			window.opener.location.reload();
+		}
+		self.close();
+		</script>";
 	}else{
-		$res_data['success'] = false;
-		$res_data['msg'] = '오류가 발생하였습니다.';
+		echo"<script>alert('오류가 발생하였습니다.');self.close();</script>";
 	}
-    echo json_encode($res_data);
+    // echo json_encode($res_data);
 
 }
 ?>

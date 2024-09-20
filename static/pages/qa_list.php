@@ -27,10 +27,11 @@
         </div>
         <div class="form-container">
             <div class="btn-container">
-                <button class="regi-btn" onclick="openRegiQa()">작성하기</button>
+                <button class="regi-btn" onclick="openAnswerQa()">답변하기</button>
             </div>
             <table>
                 <colgroup>
+                    <col style="width:5%;">
                     <col style="width:5%;">
                     <col style="width:35%;">
                     <col style="width:40%;">
@@ -39,6 +40,7 @@
                 </colgroup>
                 <thead>
                     <tr>
+                        <th>선택</th>
                         <th>번호</th>
                         <th>제목</th>
                         <th>내용</th>
@@ -54,13 +56,10 @@
                         foreach($result as $item){
                     ?>
                     <tr class="question-row">
+                        <td><input type="radio" name="che_val" value="<?=$item['id']?>" id="radio-<?=$index?>"></td>
                         <td><?=$index?></td>
-                        <?if($item['is_secrete']==1){?>
-                            <td colspan='2'>비밀글 입니다.</td>
-                        <?}else{?>
-                            <td class="center"><?=$item['title']?></td>
-                            <td class="center"><?=$item['question']?></td>
-                        <?}?>
+                        <td class="center"><?=$item['title']?></td>
+                        <td class="center"><?=$item['question']?></td>
                         <td><?= date('Y-m-d',strtotime($item['regi_dt']))?></td>
                         <td><?= $item['is_answer']==1 ? '답변완료':'미답변'?></td>
                     </tr>

@@ -106,3 +106,30 @@ tbody tr{
 .password-button:hover {
 	background-color: #555;
 }
+
+.show-password, .ps-btn{
+	background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+    width: 120px;
+    height: 30px;
+    font-size: 14px;
+	text-align: center !important;
+    border-radius: 5px;
+}
+/* .lock{
+	line-height:30px ;
+} */
+.inline-container {
+    text-align: left; /* 수평 정렬 */
+	padding-left: 30px;
+}
+
+.inline-container > * {
+    display: inline-block; /* 요소를 inline-block으로 설정 */
+    vertical-align: middle; /* 수직 정렬 */
+    margin-right: 8px; /* 간격 조정 */
+}

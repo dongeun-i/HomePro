@@ -43,8 +43,8 @@
                         <th>번호</th>
                         <th>제목</th>
                         <th>내용</th>
-                        <th>작성일</th>
                         <th>작성자</th>
+                        <th>작성일</th>
                         <th>답변상태</th>
                     </tr>
                 </thead>
@@ -66,7 +66,10 @@
                             <td><?=$index?></td>
                             <?if($item['is_secrete'] == 1){?>
                                 <!-- 비밀글일 경우 -->
-                                <td colspan="2">비밀글입니다. <button class="show-password" data-id="<?=$index?>">비밀번호 입력</button></td>
+                                <td colspan="2" class="inline-container">
+                                    <i class="material-icons lock">lock</i>
+                                    비밀글입니다. 
+                                    <button class="left show-password" data-id="<?=$index?>">비밀번호 입력</button></td>
                                 <td class="center"><?=$name?></td>
                             <?}else{?>
                                 <!-- 일반 글일 경우 -->
@@ -78,23 +81,22 @@
                             <td><?= $item['is_answer'] == 1 ? '답변완료' : '미답변'?></td>
                         </tr>
 
-                        <?if($item['is_answer'] == 1){?>
+                        <?if($item['is_answer'] == 1 && $item['is_secrete']!=1 ){?>
                         <!-- 답변이 있을 경우 -->
                         <tr class="answer-row">
                             <td class="answer"></td>
-                            <td colspan="4" class="answer pre">제목 : <?= $item['title']?><br><?= $item['question']?><hr>답변 : <?= $item['answer']?></td>
+                            <td colspan="4" class="answer pre">제목 : <?= $item['title']?><br><?= $item['question']?> <br>답변 : <?= $item['answer']?></td>
                         </tr>
                         <?}?>
 
                         <!-- 비밀번호 입력창 (비밀글일 경우에만 표시) -->
                         <?if($item['is_secrete'] == 1){?>
                             <tr class="password-row" id="password-row-<?=$index?>" style="display: none;">
-                                <td colspan="5">
+                                <td colspan="5" class="inline-container">
                                     <label for="password-<?=$index?>">비밀번호:</label>
                                     <input type="password" id="password-<?=$index?>" class="password-input">
-                                    <button data-password="<?=$item['password']?>">확인</button>
+                                    <button class="ps-btn" data-password="<?=$item['password']?>">확인</button>
                                 </td>
-                               
                             </tr>
                             <tr class="question-hidden-row-<?=$index?>" style="display: none;">
                                 <td><?=$index?></td>
@@ -104,11 +106,10 @@
                                 <td><?= date('Y-m-d', strtotime($item['regi_dt']))?></td>
                                 <td><?= $item['is_answer'] == 1 ? '답변완료' : '미답변'?></td>
                             </tr>
-
                             <?if($item['is_answer'] == 1){?>
                             <tr class="answer-hidden-row-<?=$index?>" style="display: none;">
                                 <td class="answer"></td>
-                                <td colspan="4" class="answer pre">제목 : <?= $item['title']?><br><?= $item['question']?><hr>답변 : <?= $item['answer']?></td>
+                                <td colspan="4" class="answer pre">제목 : <?= $item['title']?><br><?= $item['question']?><br>답변 : <?= $item['answer']?></td>
                             </tr>
                             <?}?>
                         <?}?>

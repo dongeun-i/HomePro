@@ -18,5 +18,21 @@
 
 			return $results;
 		}
+
+		public static function selectOne($id){
+			$db = new Database();
+			$result = $db->query(QaQuery::selectOne($id));
+	
+			if ($result->num_rows > 0) {
+				$row = $result->fetch_assoc();
+				$results = $row;
+			} else {
+				$results = [];
+				//echo "No results found.";
+			}			
+	
+			return $results;
+		}
 	}
+
 ?>
