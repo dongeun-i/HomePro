@@ -1,0 +1,39 @@
+name: Deploy with Docker Compose
+
+on:
+  push:
+    branches: ["main"] # master 브랜치를 사용 중이라면 "master"로 수정하세요.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 1. Docker Compose를 사용하여 컨테이너 빌드 및 실행
+      - name: Build with Docker Compose
+        run: docker-compose up --build -d web
+
+      # 2. 권한 문제 방지 (Docker 생성 파일의 소유권 변경)
+      - name: Fix permissions
+        run: sudo chown -R $USER:$USER .
+
+      # 3. 배포용 Artifact 업로드
+      # docker-compose에서 볼륨 매운트한 '.' 경로를 사용합니다.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 만약 빌드 결과물이 특정 폴더(예: dist)에 생긴다면 해당 경로로 수정하세요.
+          path: '.' 
+
+      # 4. GitHub Pages에 최종 배포
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
